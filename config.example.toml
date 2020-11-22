@@ -1,0 +1,10 @@
+scale_mac = "DE:AD:BE:EF:00:00"
+app_key = "XXX"
+app_secret = "XXX"
+
+[[users]]
+name = "John Doe"
+weight_threshold = 75
+login = "john@doe.com"
+token = 'XXX'
+secret = 'XXX'

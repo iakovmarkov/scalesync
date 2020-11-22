@@ -1,0 +1,6 @@
+ignore/
+config.toml
+.env
+
+__pycache__/
+.vscode/

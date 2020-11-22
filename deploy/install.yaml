@@ -1,0 +1,60 @@
+---
+- hosts: box.iakov.me
+  remote_user: markov
+  become: yes
+  tasks:
+  - name: Install dependencies
+    block:
+      - name: Install Git
+        apt:
+          name: git
+          state: present
+          update_cache: yes
+      - name: Install Python 3
+        apt:
+          name: python3
+          state: present
+      - name: Install Pip
+        apt:
+          name: python3-pip
+          state: present
+      - name: Install pipenv
+        pip:
+          name: pipenv
+          executable: pip3
+
+  - name: Install service
+    block:
+      - name: Copy service
+        copy:
+          src: ./scalesync.service
+          dest: /etc/systemd/system
+          owner: root
+          group: root
+      - name: Reload units
+        systemd:
+          daemon_reload: yes
+  
+  - name: Stop services
+    systemd:
+      name: scalesync
+      state: stopped
+      enabled: yes
+
+  - name: Install latest scalesync
+    block:
+    - name: Clone repo
+      synchronize:
+        src: '../../'
+        dest: /opt/scalesync
+    - name: install packages
+      command: pipenv sync --python /usr/bin/python3
+      become: yes
+      args:
+        chdir: /opt/scalesync
+  
+  - name: Start services
+    systemd:
+      name: scalesync
+      state: started
+      enabled: yes

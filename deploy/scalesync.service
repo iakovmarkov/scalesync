@@ -1,0 +1,14 @@
+[Unit]
+Description=Scale Sync
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/scalesync
+ExecStart=/usr/local/bin/pipenv run python scalesync
+EnvironmentFile=/etc/environment
+Restart=always
+RestartSec=500ms
+StartLimitInterval=0
+
+[Install]
+WantedBy=multi-user.target
