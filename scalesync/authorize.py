@@ -9,10 +9,10 @@ oauth = OAuth1Service(
   name='fatsecret',
   consumer_key=config['app_key'],
   consumer_secret=config['app_secret'],
-  request_token_url='http://www.fatsecret.com/oauth/request_token',
-  access_token_url='http://www.fatsecret.com/oauth/access_token',
-  authorize_url='http://www.fatsecret.com/oauth/authorize',
-  base_url='http://platform.fatsecret.com/rest/server.api'
+  request_token_url='https://www.fatsecret.com/oauth/request_token',
+  access_token_url='https://www.fatsecret.com/oauth/access_token',
+  authorize_url='https://www.fatsecret.com/oauth/authorize',
+  base_url='https://platform.fatsecret.com/rest/server.api'
 )
 
 ## Get a Request Token
