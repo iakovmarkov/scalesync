@@ -76,10 +76,10 @@ class ScanProcessor():
             name='fatsecret',
             consumer_key=self.config['app_key'],
             consumer_secret=self.config['app_secret'],
-            request_token_url='http://www.fatsecret.com/oauth/request_token',
-            access_token_url='http://www.fatsecret.com/oauth/access_token',
-            authorize_url='http://www.fatsecret.com/oauth/authorize',
-            base_url='http://platform.fatsecret.com/rest/server.api'
+            request_token_url='https://www.fatsecret.com/oauth/request_token',
+            access_token_url='https://www.fatsecret.com/oauth/access_token',
+            authorize_url='https://www.fatsecret.com/oauth/authorize',
+            base_url='https://platform.fatsecret.com/rest/server.api'
           )
 
           session = oauth.get_session((user['token'], user['secret']))
@@ -91,7 +91,7 @@ class ScanProcessor():
             'weight_type': unit,
           }
 
-          r = session.get('http://platform.fatsecret.com/rest/server.api', params=params)
+          r = session.get('https://platform.fatsecret.com/rest/server.api', params=params)
           log.info(f'Logging result: {r.text}')
 
           return
